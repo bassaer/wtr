@@ -1,6 +1,6 @@
 {
     "name": "wtr",
-    "version": "0.1.0",
+    "version": "0.2.0",
     "description": "check weather",
     "main": "./dist/index.js",
     "scripts": {
@@ -26,6 +26,7 @@
     "homepage": "https://github.com/bassaer/wtr#readme",
     "devDependencies": {
         "@types/jest": "^24.0.19",
+        "danger": "^9.2.2",
         "jest": "^24.9.0",
         "ts-jest": "^24.1.0",
         "ts-node": "^8.4.1",
@@ -48,5 +49,9 @@
         "testMatch": [
             "**/tests/**/*.test.ts"
         ]
+    },
+    "dependencies": {
+        "@types/node-emoji": "^1.8.1",
+        "node-emoji": "^1.10.0"
     }
 }

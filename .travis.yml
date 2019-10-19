@@ -1,15 +1,18 @@
 languare: node_js
 branches:
   only:
-    - master
+  - master
 node_js:
-  - 12
+- 12
 cache: yarn
+install:
+- bundle install
 script:
-  - yarn
-  - yarn build
-  - yarn test
-  - yarn lint
+- yarn install --ignore-engines
+- yarn build
+- yarn test
+- yarn lint
+- bundle exec danger
 deploy:
   provider: npm
   skip_cleanup: true
@@ -17,4 +20,7 @@ deploy:
   api_key:
     secure: Tr5QfuFuSWOGP32AVpIbJ1Ytgevj8lLd2ovPqKxmvo9AJ3Lk0hcAMainr22A3ySFVuugGyGhmhD0E1BdMcE7Ia+NHzdipe1ttiuRN/K5ki6hbRBJpR/PZ9aytzRRea49HofSxxgfeTYY1ebk+FdMDZLqPhR6Usb/htapPFUjE7leIIzt4bQQLGPeeHG+5SoNizJS4YrqFgpX0mmIWpLd8ub9oNnM9d7F+C5t+mtJiPxtOlpPMmVur1V+Waafi98Egbt+YNifilYfRz8DGDvzRAFnM9q3JwcvPFK/3uRGA6RX34Nxk/CaKav3HOrVBwmwdg52Fa+oJbqujxe0vw4tEG9qk/4uMmFkW8+vlapfmlh4XvWUBJt7FLPKX/Opby1HCcIzWnF6vpksILpVRJeAbZtRNBcFR/qShhPQ4Mz134YI9S8z0KUbuT+5ldX3AJFfMthcUD+OcNFG3XHb6xf8IZOzgUix9I/kGEgGGVLN7YpDizXlNorqBRBjZIYvKHdfFy3egT363zhSa7AUk6ESBWWtf47f1Cb4uq6mMF4TdsnBzNp/Wec+8P4Ca4iqwKrXkHzDD6ueYnmQ9hGzgU0qyj9lm2zHHBDu9WHbKcHVSBY19UfB9GqpHmIuHgcSax7LwfG2GfG6ZPhm5EbXScqvkzP1ZvvUIqVACyL/kpBGbv8=
 after_deploy:
-  - "./scripts/release.sh"
+- "./scripts/release.sh"
+env:
+  global:
+    secure: m1+qtlc6D//J8uRZfBs59fiH+3GPsBWgdzGEiX5II520Kq3KcGn7UEINok+geew+7gG5u1dMB69MF/9fTi45tZKZqOLbHdenqZDo1rQqWgPnzgONc8lXlIjf6hqz12tQeRppHfpU4qg/tep6s8Oyl+pZ8FByyUQmram5Sxmykz048iuPAm81CCJUGZ6Rp+gBXs2BPx8NJplGbDi2JQPV/jvSbPRva5DSHROxRO0QtoypuahftVBlos1TukleML9VO0TKyLyVlOZl78MSkJ5U3kht4ld0ASRA++88alqMRYP++35SddjgKphZKXzprD69RsWR2U3QzhrFT/0fFupRVuKAMxibQWJe89KO/L5H+XaNOb83IeIqPXtDPOmB5kLPYgx/MXm3BIxVkw6GUyge3AHvcjjQzS9o/5xgTm+57/JZer9IPezyU0xDwi28Zc+WIYPcnFPU1Y3SKtJTWtjRMEz17UTKKWRsJ6R7roTCFU+KBvmyv1JcKihUWQz2Xnr0F65QCiCglVXu2dbZzAZNkyB7K+nmXYCj3gJCBp9DeDYt8vQzl2fhMEJjAkkDTVHV1PYK1Op7XwqJGpmrRY2Hu1dpU0CP1mK7yp5fU7O/j/E6cXZ9rnPkNxWsEhrDjwWIouuMMxhY7nM5RGOE+zgv0L5xVPHfw6RviiG4MIjfoCM=
