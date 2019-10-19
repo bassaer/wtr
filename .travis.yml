@@ -11,7 +11,7 @@ cache: yarn
 install:
   - bundle install
 script:
-  - yarn
+  - yarn install --ignore-engines
   - yarn build
   - yarn test
   - yarn lint
