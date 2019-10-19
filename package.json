@@ -48,5 +48,9 @@
         "testMatch": [
             "**/tests/**/*.test.ts"
         ]
+    },
+    "dependencies": {
+        "@types/node-emoji": "^1.8.1",
+        "node-emoji": "^1.10.0"
     }
 }
