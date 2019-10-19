@@ -1,15 +1,21 @@
 languare: node_js
+env:
+  global:
+    secure: OxBNQatq2PqM0xOkyoom4lQqJU7RDUJaHLPsUKEsgzjC0psnH3jiNshcGykkhWko5ysPFsI0BmxndtD/pYxKa7ei9rDuTd2we4KV9zz4RW7aczrG/24RlVsaalc3jKjQmg1lZ8ZF+GLLPeKviF4nU6RXhbxdjk8cPX8quIaG1fuj8B26QqWmZMmLHSRdTOCt++cDAR4WyIFbV4YHiDaFsHGZZM+107MSau1TEh2boD8bpQKi5MlngwXuzseKacNo7rm14QzDLF9dJlfy4E/q7cLB1iGoaQmTdjaxboQRWJ/I02u61LmQnb2weRlvT3W0V8d7+BfBv0qevtf4tK8IXJ9YMT2EPWQL3E2z1qnMr/lR7uY197iOfZtYnf2olFyamPXNvM4npN56pXQzY2jQOVSNr56wlxZFgTgD9OoepqYbGygJQSAghX0S6h5GgLOVIdeRzaWB/MlaUquxap/fuOgqTtrCDJXMju2BgZSx9MxQANbjNWQ/LKLoXfjf5jSLYyUizLx8C1VxlVNoOOIrWbqI8HfwpiWrwaJMRchK/45QIWln8hdfaDakoWDfEUfBzIkGSteKfj6YBkqjRExzZhzzQPIgKiDIHezVUqr+6zl0Vn2huNZTJHhAFK+JO/ednoKeFQQSOE581Nt0dFeIlgaCXAXX55Mp91KGjENbRVg=
 branches:
   only:
     - master
 node_js:
   - 12
 cache: yarn
+install:
+  - bundle install
 script:
   - yarn
   - yarn build
   - yarn test
   - yarn lint
+  - bundle exec danger
 deploy:
   provider: npm
   skip_cleanup: true
