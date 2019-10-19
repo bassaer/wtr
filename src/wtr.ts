@@ -1,21 +1,20 @@
 import emoji from "node-emoji";
-import { tsConstructorType } from "@babel/types";
 
-enum Status {
+export enum Status {
     Sunny,
     Cloudy,
-    Rainy 
-};
+    Rainy,
+}
 
 export class Weather {
-    private status: Status
+    private status: Status;
 
     constructor(status: Status) {
         this.status = status;
-    }    
-    
-    toString() {
-        switch(this.status) {
+    }
+
+    public toString() {
+        switch (this.status) {
             case Status.Sunny:
                 return emoji.get("sunny");
             case Status.Cloudy:
@@ -24,13 +23,13 @@ export class Weather {
                 return emoji.get("umbrella_with_rain_drops");
         }
     }
-};
+}
 
 export const wtr = (status: Status) => {
     const weather = new Weather(status);
     console.log(weather.toString());
 };
 
-wtr(Status.Sunny)
-wtr(Status.Cloudy)
-wtr(Status.Rainy)
+wtr(Status.Sunny);
+wtr(Status.Cloudy);
+wtr(Status.Rainy);

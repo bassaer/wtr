@@ -1,7 +1,8 @@
-import { wtr } from "../src/wtr";
+import { wtr, Status, Weather } from "../src/wtr";
 
 describe("wtr", (): void => {
-    test('should return wtr!', (): void => {
-        expect(wtr()).toBe("wtr!");
+    test('should return weather', (): void => {
+        const weather = new Weather(Status.Sunny);
+        expect(weather.toString()).toBe("☀️");
     });
 });
