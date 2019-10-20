@@ -1,16 +1,20 @@
 import emoji from "node-emoji";
+import { Config } from "./confing";
 
-export enum Status {
+enum Status {
     Sunny,
     Cloudy,
     Rainy,
+    Unknown,
 }
 
 export class Weather {
     private status: Status;
+    private config: Config | undefined;
 
-    constructor(status: Status) {
-        this.status = status;
+    constructor(config?: Config ) {
+        this.status = Status.Unknown;
+        this.config = config;
     }
 
     public toString() {
@@ -21,15 +25,8 @@ export class Weather {
                 return emoji.get("cloud");
             case Status.Rainy:
                 return emoji.get("umbrella_with_rain_drops");
+            default:
+                return emoji.get("warning");
         }
     }
 }
-
-export const wtr = (status: Status) => {
-    const weather = new Weather(status);
-    console.log(weather.toString());
-};
-
-wtr(Status.Sunny);
-wtr(Status.Cloudy);
-wtr(Status.Rainy);
