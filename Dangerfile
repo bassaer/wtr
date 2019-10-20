@@ -6,7 +6,7 @@ if git.modified_files.include? "package.json" then
     pkg_jsn = git.modified_files.select { |path| path.include? "package.json" }
     new_ver = open(pkg_jsn[0]) { |f| JSON.load(f)['version'] }
     if cur_ver != new_ver
-        markdown "## bump"
+        markdown "## bump :white_check_mark:"
         markdown "```#{cur_ver}``` -> ```#{new_ver}```"
         return
     end
