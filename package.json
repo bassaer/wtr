@@ -1,6 +1,6 @@
 {
     "name": "wtr",
-    "version": "0.3.0",
+    "version": "1.0.0",
     "description": "check weather",
     "main": "./dist/index.js",
     "scripts": {
@@ -9,6 +9,9 @@
         "test": "jest",
         "lint": "tslint -t verbose -p .",
         "prepare": "tsc"
+    },
+    "bin": {
+        "wtr": "./dist/index.js"
     },
     "repository": {
         "type": "git",
@@ -53,7 +56,9 @@
     "dependencies": {
         "@types/node": "^12.11.1",
         "@types/node-emoji": "^1.8.1",
+        "@types/request": "^2.48.3",
         "commander": "^3.0.2",
-        "node-emoji": "^1.10.0"
+        "node-emoji": "^1.10.0",
+        "request": "^2.88.0"
     }
 }

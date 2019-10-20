@@ -5,10 +5,11 @@ import { Weather } from "./wtr";
 
 program
     .version(version, "-V, --version")
+    .option("-a, --api-key <API_KEY>", "API KEY of OpenWeatherMap")
     .option("-v, --verbose", "verbose", false)
     .option("-p, --path </path/to/conf>", "config path")
+    .option("-c, --city <city>", "city name")
     .parse(process.argv);
 
 const conf = new Config(program);
-const weather = new Weather(conf);
-console.log(weather.toString());
+new Weather(conf).get();
