@@ -12,4 +12,11 @@ program
     .parse(process.argv);
 
 const conf = new Config(program);
-new Weather(conf).get();
+const weather = new Weather(conf);
+weather.get()
+    .then((res: string) => {
+        console.log(res);
+    })
+    .catch((err: any) => {
+        console.error(err);
+    });

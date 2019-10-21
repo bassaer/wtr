@@ -1,52 +1,47 @@
+import { rejects } from "assert";
+import axos from "axios";
 import emoji from "node-emoji";
-import request from "request";
 import { Config } from "./confing";
 
 export class Weather {
-    private status: string;
     private config: Config;
 
     constructor(config: Config) {
-        this.status = emoji.get("warning");
         this.config = config;
     }
 
-    public get() {
+    public async get(): Promise<string> {
         const url = "https://api.openweathermap.org/data/2.5/forecast";
         const qs = this.config.getQsObject();
-        request.get(url, {qs}, (err: any, res: any, body: any) => {
-            if (err) {
-                console.error(err);
-                return;
-            }
-
-            const result = JSON.parse(body);
-            const jsnStr = JSON.stringify(result, null, 2);
-            if (res.statusCode !== 200) {
-                console.error(jsnStr);
-                return;
-            }
-            if (this.config.verbose) {
-                console.log(jsnStr);
-            }
-            const main = result.list[0].weather[0].main;
-            switch (main) {
-                case "Clear":
-                    this.status = emoji.get("sunny");
-                    break;
-                case "Clouds":
-                    this.status = emoji.get("cloud");
-                    break;
-                case "Rain":
-                    this.status = emoji.get("umbrella");
-                    break;
-                case "Snow":
-                    this.status = emoji.get("snowflake");
-                    break;
-                default:
-                    this.status = emoji.get("warning");
-            }
-            console.log(this.status);
+        return new Promise((resolve: (status: string) => void, reject: (err?: any) => void) => {
+            axos.get(url, {
+                params: qs,
+            }).then((res: any) => {
+                const body = JSON.stringify(res.data, null, 2);
+                if (this.config.verbose) {
+                    console.log(body);
+                }
+                const main = res.data.list[0].weather[0].main;
+                switch (main) {
+                    case "Clear":
+                        resolve(emoji.get("sunny"));
+                        break;
+                    case "Clouds":
+                        resolve(emoji.get("cloud"));
+                        break;
+                    case "Rain":
+                        resolve(emoji.get("umbrella"));
+                        break;
+                    case "Snow":
+                        resolve(emoji.get("snowflake"));
+                        break;
+                    default:
+                        resolve(emoji.get("warning"));
+                }
+            })
+            .catch((err: any) => {
+                reject(err.response.data);
+            });
         });
     }
 }
