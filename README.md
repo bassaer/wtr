@@ -13,21 +13,17 @@ wtr is a cli command to check the weather where you live.
 
 ## usage
 
-```
-❯ wtr
-☀️
+![screen](https://github.com/bassaer/wtr/blob/master/screen.png)
 
-❯ wtr -a <your_app_id> -c 'london,uk'
-☁️
-```
 
-or you can use config file at `~/.wtr/config.json`
+you can use config file at `~/.wtr/config.json`
 
 ```
 {
     "APPID": "your_app_id",
-    "q": "tokyo,jp"
+    "q": "tokyo,jp",
+    ...
 }
 ```
 
-c.f. [OpenWeatherMap](https://openweathermap.org/current#current_JSON)
+c.f. [OpenWeatherMap](https://openweathermap.org/current)
