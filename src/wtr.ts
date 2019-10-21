@@ -1,32 +1,47 @@
+import { rejects } from "assert";
+import axos from "axios";
 import emoji from "node-emoji";
 import { Config } from "./confing";
 
-enum Status {
-    Sunny,
-    Cloudy,
-    Rainy,
-    Unknown,
-}
-
 export class Weather {
-    private status: Status;
-    private config: Config | undefined;
+    private config: Config;
 
-    constructor(config?: Config ) {
-        this.status = Status.Unknown;
+    constructor(config: Config) {
         this.config = config;
     }
 
-    public toString() {
-        switch (this.status) {
-            case Status.Sunny:
-                return emoji.get("sunny");
-            case Status.Cloudy:
-                return emoji.get("cloud");
-            case Status.Rainy:
-                return emoji.get("umbrella_with_rain_drops");
-            default:
-                return emoji.get("warning");
-        }
+    public async get(): Promise<string> {
+        const url = "https://api.openweathermap.org/data/2.5/forecast";
+        const qs = this.config.getQsObject();
+        return new Promise((resolve: (status: string) => void, reject: (err?: any) => void) => {
+            axos.get(url, {
+                params: qs,
+            }).then((res: any) => {
+                const body = JSON.stringify(res.data, null, 2);
+                if (this.config.verbose) {
+                    console.log(body);
+                }
+                const main = res.data.list[0].weather[0].main;
+                switch (main) {
+                    case "Clear":
+                        resolve(emoji.get("sunny"));
+                        break;
+                    case "Clouds":
+                        resolve(emoji.get("cloud"));
+                        break;
+                    case "Rain":
+                        resolve(emoji.get("umbrella"));
+                        break;
+                    case "Snow":
+                        resolve(emoji.get("snowflake"));
+                        break;
+                    default:
+                        resolve(emoji.get("warning"));
+                }
+            })
+            .catch((err: any) => {
+                reject(err.response.data);
+            });
+        });
     }
 }
