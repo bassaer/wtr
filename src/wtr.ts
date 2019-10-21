@@ -33,8 +33,8 @@ export class Weather {
             axos.get(url, {
                 params: qs,
             }).then((res: any) => {
-                const body = JSON.stringify(res.data, null, 2);
                 if (this.config.verbose) {
+                    const body = JSON.stringify(res.data, null, 2);
                     console.log(body);
                 }
                 const main = res.data.list[0].weather[0].main;
