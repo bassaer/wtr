@@ -30,4 +30,4 @@ or you can use config file at `~/.wtr/config.json`
 }
 ```
 
-c.f. [OpenWeatherMap](https://openweathermap.org/current#current_JSON)
+c.f. [OpenWeatherMap](https://openweathermap.org/current)

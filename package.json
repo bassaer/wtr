@@ -1,17 +1,17 @@
 {
     "name": "wtr",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "check weather",
-    "main": "./dist/index.js",
+    "main": "./dist/src/index.js",
+    "bin": {
+        "wtr": "./dist/src/index.js"
+    },
     "scripts": {
         "dev": "ts-node src/index.ts",
         "build": "tsc",
         "test": "jest",
         "lint": "tslint -t verbose -p .",
         "prepare": "tsc"
-    },
-    "bin": {
-        "wtr": "./dist/index.js"
     },
     "repository": {
         "type": "git",
