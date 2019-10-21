@@ -3,6 +3,22 @@ import axos from "axios";
 import emoji from "node-emoji";
 import { Config } from "./confing";
 
+function getEmoji(code: string) {
+    switch (code) {
+        case "Clear":
+            return emoji.get("sunny");
+        case "Clouds":
+            return emoji.get("cloud");
+        case "Rain":
+            return emoji.get("umbrella");
+            break;
+        case "Snow":
+            return emoji.get("snowflake");
+        default:
+            return emoji.get("warning");
+    }
+}
+
 export class Weather {
     private config: Config;
 
@@ -22,22 +38,7 @@ export class Weather {
                     console.log(body);
                 }
                 const main = res.data.list[0].weather[0].main;
-                switch (main) {
-                    case "Clear":
-                        resolve(emoji.get("sunny"));
-                        break;
-                    case "Clouds":
-                        resolve(emoji.get("cloud"));
-                        break;
-                    case "Rain":
-                        resolve(emoji.get("umbrella"));
-                        break;
-                    case "Snow":
-                        resolve(emoji.get("snowflake"));
-                        break;
-                    default:
-                        resolve(emoji.get("warning"));
-                }
+                resolve(getEmoji(main));
             })
             .catch((err: any) => {
                 reject(err.response.data);
