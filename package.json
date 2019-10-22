@@ -1,6 +1,6 @@
 {
     "name": "wtr",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "check weather",
     "main": "./dist/src/index.js",
     "bin": {
@@ -20,11 +20,6 @@
     "keywords": [
         "weather",
         "CLI"
-    ],
-    "files": [
-        "dist/",
-        "README.md",
-        "package.json"
     ],
     "author": "Tsubasa Nakayama <app.nakayama@gmail.com> (https://bassaer.github.io/me/)",
     "license": "Apache-2.0",
