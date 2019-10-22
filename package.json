@@ -21,6 +21,11 @@
         "weather",
         "CLI"
     ],
+    "files": [
+        "dist/",
+        "README.md",
+        "package.json"
+    ],
     "author": "Tsubasa Nakayama <app.nakayama@gmail.com> (https://bassaer.github.io/me/)",
     "license": "Apache-2.0",
     "bugs": {
